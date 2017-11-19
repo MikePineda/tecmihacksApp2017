@@ -20,13 +20,14 @@ for(var i = 0; i < length; i++) {
     passengersArray.push("adult");
 }
       console.log(passengersArray);
+      console.log(this.props.input.tags);
       console.log("orpppp " +this.props.input.origen);
       axios.post('http://localhost:5000/buscar', {
     'origin': `${this.props.input.origen}`,
-    'destination': ['cancun', 'guadalajara','culiacan'],
+    'destination': this.props.input.tags,
     'passengers': passengersArray,
     'date': '26-11-2017',
-    'limit': 20
+    'limit': 50
     })
   .then((response) => {
     //const places = response.data.data.children.map(obj => obj.data);
@@ -86,7 +87,7 @@ for(var i = 0; i < length; i++) {
         <td key={place[1].transport_name}>{place[1].transport_name}</td>
         <td key={place[1].rating}>{place[1].rating} <span className="glyphicon glyphicon-star"></span>
         </td>
-        <td key={place[0]}>{place[1].price}</td>
+        <td key={place[0]}>{place[1].price * this.props.input.pasajeros}</td>
         <td><a href="#" className="btn btn-success"><span className="glyphicon glyphicon-usd"></span> Comprar</a></td>
 
         </tr>

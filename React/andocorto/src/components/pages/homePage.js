@@ -4,7 +4,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import Results  from './results';
-
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 class HomePage extends Component {
   constructor (props) {
      super(props)
@@ -23,6 +24,7 @@ class HomePage extends Component {
                pasajeros: 1,
                startDate: moment(),
               showComponent: false,
+              tags: ["culiacan","guadalajara","san-jose-del-cabo"]
            }
 
 
@@ -30,7 +32,6 @@ class HomePage extends Component {
      console.log(1);
      this.handleSubmit = this.handleSubmit.bind(this);
      this.handleInputChange = this.handleInputChange.bind(this);
-
    }
 
 
@@ -45,12 +46,9 @@ class HomePage extends Component {
                   ...state.input,
                   ...newPartialInput
               }
+
           }))
-
-          console.log(newPartialInput);
       }
-
-
 
 
    handleSubmit(newPartialInput) {
@@ -67,6 +65,7 @@ class HomePage extends Component {
     console.log(this.state.input.showComponent);
 
 }
+
 
   render() {
     return (
@@ -88,7 +87,9 @@ class HomePage extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputEmail">Destino/s</label>
-              <input type="email" className="form-control" id="exampleInputEmail" placeholder=" escribe tus destinos aquí " value={this.state.input.destino}   onChange={e => this.handleInputChange({destino: e.target.value})} />
+              <TagsInput  className="form-control" value={this.state.input.tags}
+              onChange={e => this.handleInputChange({tags: e.target})}
+              />
             </div>
 
           </div>
