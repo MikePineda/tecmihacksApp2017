@@ -52,19 +52,23 @@ def buscar():
         searchs.append(splane.json())
     trips = dict()
     for s in searchs:
-        for trip in s.get("trips", []):
+        for trip in (s.get("trips", []) + s.get("flights", [])):
             tripd = dict()
             tripd["transport_type"] = trip["transport_type"]
             tripd["price"] = trip['pricing']['total']
-            tripd["stops"] = trip["stops"]
             tripd["duration"] = trip["duration"]
+            tripd["arrival"] = trip["arrival"]
+            tripd["departure"] = trip["departure"]
             tripd["destination"] = trip["destination_id"]
             if trip["transport_type"] == "flight":
+                tripd["stops"] = len(trip["legs"])
                 tripd["rating"] = "no disponible"
-                tripd["transport_name"] = s["carriers"][trip["legs"]["carrier_id"]]["name"]
+                tripd["transport_name"] = s["carriers"][trip["legs"][0]["carrier_id"]]["name"]
             if trip["transport_type"] == "bus":
+                tripd["stops"] = trip["stops"]
                 tripd["rating"] = s["lines"][trip["line_id"]]["average_ratings"]
                 tripd["transport_name"] = s["lines"][trip["line_id"]]["name"]
+                tripd["destination"] = s["terminals"][trip["destination_id"]]["city_name"]
             trips[trip["id"]] = tripd
     sorted_trips = sorted(trips.items(), key=lambda x: x[1]['price'])
     return jsonify(sorted_trips[:postdata.get("limit", 50)])
