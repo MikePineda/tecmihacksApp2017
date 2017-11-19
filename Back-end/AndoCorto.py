@@ -69,9 +69,10 @@ def buscar():
                 tripd["rating"] = s["lines"][trip["line_id"]]["average_ratings"]
                 tripd["transport_name"] = s["lines"][trip["line_id"]]["name"]
                 tripd["destination"] = s["terminals"][trip["destination_id"]]["city_name"]
-            trips[trip["id"]] = tripd
+            if tripd["price"] <= postdata.get("maxprice", 5000):
+                trips[trip["id"]] = tripd
+
     sorted_trips = sorted(trips.items(), key=lambda x: x[1]['price'])
     return jsonify(sorted_trips[:postdata.get("limit", 50)])
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
