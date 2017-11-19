@@ -73,5 +73,5 @@ def buscar():
     sorted_trips = sorted(trips.items(), key=lambda x: x[1]['price'])
     return jsonify(sorted_trips[:postdata.get("limit", 50)])
 
-#if __name__ == '__main__':
-#    app.run(host='10.76.29.84', port=5000, debug=False, threaded=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
