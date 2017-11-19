@@ -20,7 +20,7 @@ class HomePage extends Component {
        input: {
                origen: "",
                destino: "",
-               pasajeros: 0,
+               pasajeros: 1,
                startDate: moment(),
               showComponent: false,
            }

@@ -12,16 +12,19 @@ class Results extends React.Component {
       this.componentDidMount = this.componentDidMount.bind(this);
     }
     componentDidMount() {
-      var length = 0;
-      length = this.props.input.pasajeros;
-      var passengersArray = passengersArray[length];
-      passengersArray.fill("adult");
+
+      var passengersArray = [];
+      var length = this.props.input.pasajeros; // user defined length
+
+for(var i = 0; i < length; i++) {
+    passengersArray.push("adult");
+}
       console.log(passengersArray);
       console.log("orpppp " +this.props.input.origen);
       axios.post('http://localhost:5000/buscar', {
     'origin': `${this.props.input.origen}`,
     'destination': ['cancun', 'guadalajara','culiacan'],
-    'passengers': ['adult'],
+    'passengers': passengersArray,
     'date': '26-11-2017',
     'limit': 20
     })
