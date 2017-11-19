@@ -61,7 +61,7 @@ for(var i = 0; i < length; i++) {
         return (
           <div>
           <br />
-<a href="http://localhost:3000" class="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
+<a href="http://localhost:3000" className="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
 <br />
 <br />
 
@@ -78,13 +78,6 @@ for(var i = 0; i < length; i++) {
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>mmm</td>
-        <td>60</td>
-        <td>Copixil</td>
-        <td>5.0</td>
-        <td>23342</td>
-      </tr>
       {this.state.places.map(place =>
         <tr key={place[0]}>
         <td key={place[1].destination}>{place[1].destination}</td>

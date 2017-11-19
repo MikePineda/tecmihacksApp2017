@@ -89,8 +89,8 @@ class HomePage extends Component {
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail">Destino/s</label>
-                    <TagsInput  className="form-control" value={this.state.input.tags}
-                    onChange={e => this.handleInputChange({tags: e.target})}
+                    <TagsInput  name="tags" className="form-control" value={this.state.input.tags}
+                    onChange={e => this.handleInputChange({tags: e})}
                     />
                   </div>
 
