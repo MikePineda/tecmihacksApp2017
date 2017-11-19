@@ -24,7 +24,8 @@ class HomePage extends Component {
                pasajeros: 1,
                startDate: moment(),
               showComponent: true,
-              tags: ["culiacan","guadalajara","san-jose-del-cabo"]
+              tags: ["culiacan","guadalajara","san-jose-del-cabo"],
+              presupuesto: 0
            }
 
 
@@ -63,6 +64,7 @@ class HomePage extends Component {
     console.log(this.state.input.pasajeros);
     console.log(this.state.input.startDate);
     console.log(this.state.input.showComponent);
+    console.log(this.state.input.presupuesto);
 
 }
 
@@ -93,13 +95,12 @@ class HomePage extends Component {
                     onChange={e => this.handleInputChange({tags: e})}
                     />
                   </div>
-
-                </div>
-                <div className="col-md-6 ">
                   <div className="form-group">
                     <label htmlFor="telephone">Pasajeros:</label>
                     <input type="number" className="form-control" id="passengers" placeholder=" Ingresar numero de pasajeros" value={this.state.input.pasajeros}   onChange={e => this.handleInputChange({pasajeros: e.target.value})} />
                     </div>
+                </div>
+                <div className="col-md-6 ">
                   <div className="form-group">
                     <label htmlFor="description">Día de salida:</label>
                     <DatePicker
@@ -110,6 +111,10 @@ class HomePage extends Component {
                         />
                     <br />
                   </div>
+                  <div className="form-group">
+                    <label htmlFor="telephone">Dinero con el que cuentas:</label>
+                    <input type="number" className="form-control" id="presupuesto" placeholder="Ingresar cantidad de dinero" value={this.state.input.presupuesto}   onChange={e => this.handleInputChange({presupuesto: e.target.value})} />
+                    </div>
                 <div>
                   <button onClick={this.handleSubmit} type="button" className="btn btn-default submit"><i className="fa fa-paper-plane" aria-hidden="true" />  ¡Buscar viajes!</button>
                 </div>

@@ -7,12 +7,16 @@ class Results extends React.Component {
       super(props);
 
       this.state = {
-         places: []
+         places: [],
+         isLoading: true
       };
       this.componentDidMount = this.componentDidMount.bind(this);
     }
-    componentDidMount() {
 
+
+
+    componentDidMount() {
+      this.setState ({isLoading: false});
       var passengersArray = [];
       var length = this.props.input.pasajeros; // user defined length
 
@@ -28,6 +32,7 @@ for(var i = 0; i < length; i++) {
     'passengers': passengersArray,
     'date': '19-11-2017',
     'limit': 50
+    'maxprice' : this.props.input.presupuesto
     })
   .then((response) => {
     //const places = response.data.data.children.map(obj => obj.data);
