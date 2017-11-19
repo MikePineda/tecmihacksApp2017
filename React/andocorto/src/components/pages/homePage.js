@@ -9,31 +9,27 @@ class HomePage extends Component {
      super(props)
      this.state = {
        startDate: moment(),
-       origen : null
+       origen : ""
 
      };
-     this.publish = this.publish.bind(this);
-     console.log("pro" + this);
+     console.log(1);
      this.handleChange = this.handleChange.bind(this);
+     this.handleSubmit = this.handleSubmit.bind(this);
    }
 
 
 
-   publish() {
-     console.log( this.state.topicBox, this.state.payloadBox );
-   }
-
-   handleChange(target) {
-     this.setState({
-       [target.name]: target.value
-     });
-     console.log(target.name);
-     console.log(target.value);
+   handleChange(e) {
+     [e.target.name] = e.target.value;
+     console.log(e.name);
+     console.log(e.value);
    }
 
    handleSubmit() {
 //    console.log("Origen: " + this.state.origen);
-    console.log( this.state.startDate, this.state.Origen );
+    console.log(this.state.startDate);
+    console.log(this.state.Origen);
+
 }
 
   render() {
@@ -52,7 +48,7 @@ class HomePage extends Component {
           <div className="col-md-6 form-line">
             <div className="form-group">
               <label htmlFor="exampleInputUsername">Origen</label>
-              <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.origen}   onChange={ this.handleChange }   />
+              <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.origen}   onChange={ this.handleChange.bind(this) }   />
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputEmail">Destino/s</label>
@@ -71,7 +67,7 @@ class HomePage extends Component {
                       name="startDate"
                       className="form-control"
                       selected={this.state.startDate}
-                      onChange={this.handleChange}
+                      onChange={this.handleChange.bind(this)}
                   />
               <br />
             </div>
