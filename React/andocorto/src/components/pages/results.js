@@ -19,7 +19,8 @@ class Results extends React.Component {
       this.setState ({isLoading: false});
       var passengersArray = [];
       var length = this.props.input.pasajeros; // user defined length
-
+      var dinero =this.props.input.presupuesto;
+      console.log("dinero: "+ dinero);
 for(var i = 0; i < length; i++) {
     passengersArray.push("adult");
 }
@@ -31,8 +32,8 @@ for(var i = 0; i < length; i++) {
     'destination': this.props.input.tags,
     'passengers': passengersArray,
     'date': '19-11-2017',
-    'limit': 50
-    'maxprice' : this.props.input.presupuesto
+    'limit': 50,
+    'maxprice' : dinero
     })
   .then((response) => {
     //const places = response.data.data.children.map(obj => obj.data);
@@ -66,7 +67,7 @@ for(var i = 0; i < length; i++) {
         return (
           <div>
           <br />
-<a href="http://localhost:3000" className="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
+<a href="http://165.227.60.168:3000" className="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
 <br />
 <br />
 

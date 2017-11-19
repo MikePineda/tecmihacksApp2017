@@ -12,7 +12,7 @@ class Header extends Component {
 <nav>
 <ul>
 <li className = "first">
-<a href = "http://localhost:3000"> Home </a>
+<a href = "http://165.227.60.168:3000"> Home </a>
 </li>
 <li className = "first">
 <a href = "https://github.com/MikePineda/tecmihacksApp2017"> Repositorio </a>

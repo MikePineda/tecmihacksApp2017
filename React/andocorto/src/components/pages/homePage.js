@@ -112,7 +112,7 @@ class HomePage extends Component {
                     <br />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="telephone">Dinero con el que cuentas:</label>
+                    <label htmlFor="telephone">Dinero con el que cuentas por pasajero:</label>
                     <input type="number" className="form-control" id="presupuesto" placeholder="Ingresar cantidad de dinero" value={this.state.input.presupuesto}   onChange={e => this.handleInputChange({presupuesto: e.target.value})} />
                     </div>
                 <div>
