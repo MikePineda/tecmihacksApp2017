@@ -23,7 +23,7 @@ class HomePage extends Component {
                destino: "",
                pasajeros: 1,
                startDate: moment(),
-              showComponent: false,
+              showComponent: true,
               tags: ["culiacan","guadalajara","san-jose-del-cabo"]
            }
 
@@ -70,58 +70,56 @@ class HomePage extends Component {
   render() {
     return (
 <div className = "mainForm">
-    <section id="contact">
-    <div className="section-content">
-      <h1 className="section-header">Encuentra un viaje a la medida con<span className="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Ando corto</span></h1>
-      <h3>Encontrar algo en base a tu presupuesto nunca fue tan fácil</h3>
-    </div>
-    <div className="contact-section">
-      <div className="container">
-        <form>
-        <div className="container-fluid">
-            <div className="row">
-          <div className="col-md-6 form-line">
-            <div className="form-group">
-              <label htmlFor="exampleInputUsername">Origen</label>
-              <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.input.origen}   onChange={e => this.handleInputChange({origen: e.target.value})}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="exampleInputEmail">Destino/s</label>
-              <TagsInput  className="form-control" value={this.state.input.tags}
-              onChange={e => this.handleInputChange({tags: e.target})}
-              />
-            </div>
-
-          </div>
-          <div className="col-md-6 ">
-            <div className="form-group">
-              <label htmlFor="telephone">Pasajeros:</label>
-              <input type="number" className="form-control" id="passengers" placeholder=" Ingresar numero de pasajeros" value={this.state.input.pasajeros}   onChange={e => this.handleInputChange({pasajeros: e.target.value})} />
-              </div>
-            <div className="form-group">
-              <label htmlFor="description">Día de salida:</label>
-              <DatePicker
-                      name="startDate"
-                      className="form-control"
-                      onChange ={e => this.handleInputChange({startDate: e.target})}
-                      selected={this.state.input.startDate}
-                  />
-              <br />
-            </div>
-          <div>
-            <button onClick={this.handleSubmit} type="button" className="btn btn-default submit"><i className="fa fa-paper-plane" aria-hidden="true" />  ¡Buscar viajes!</button>
-          </div>
-          </div>
-          </div>
-          </div>
-        </form>
-      </div>
-    </div>
-      </section>
-
       {this.state.showComponent ?
-                 <Results input={this.state.input}/> :
-                 <p>boom</p>
+          <Results input={this.state.input}/> :
+          <section id="contact">
+          <div className="section-content">
+            <h1 className="section-header">Encuentra un viaje a la medida con<span className="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Ando corto</span></h1>
+            <h3>Encontrar algo en base a tu presupuesto nunca fue tan fácil</h3>
+          </div>
+          <div className="contact-section">
+            <div className="container">
+              <form>
+              <div className="container-fluid">
+                  <div className="row">
+                <div className="col-md-6 form-line">
+                  <div className="form-group">
+                    <label htmlFor="exampleInputUsername">Origen</label>
+                    <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.input.origen}   onChange={e => this.handleInputChange({origen: e.target.value})}/>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail">Destino/s</label>
+                    <TagsInput  className="form-control" value={this.state.input.tags}
+                    onChange={e => this.handleInputChange({tags: e.target})}
+                    />
+                  </div>
+
+                </div>
+                <div className="col-md-6 ">
+                  <div className="form-group">
+                    <label htmlFor="telephone">Pasajeros:</label>
+                    <input type="number" className="form-control" id="passengers" placeholder=" Ingresar numero de pasajeros" value={this.state.input.pasajeros}   onChange={e => this.handleInputChange({pasajeros: e.target.value})} />
+                    </div>
+                  <div className="form-group">
+                    <label htmlFor="description">Día de salida:</label>
+                    <DatePicker
+                            name="startDate"
+                            className="form-control"
+                            onChange ={e => this.handleInputChange({startDate: e.target})}
+                            selected={this.state.input.startDate}
+                        />
+                    <br />
+                  </div>
+                <div>
+                  <button onClick={this.handleSubmit} type="button" className="btn btn-default submit"><i className="fa fa-paper-plane" aria-hidden="true" />  ¡Buscar viajes!</button>
+                </div>
+                </div>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+            </section>
               }
 
 </div>

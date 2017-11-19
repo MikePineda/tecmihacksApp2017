@@ -26,7 +26,7 @@ for(var i = 0; i < length; i++) {
     'origin': `${this.props.input.origen}`,
     'destination': this.props.input.tags,
     'passengers': passengersArray,
-    'date': '26-11-2017',
+    'date': '19-11-2017',
     'limit': 50
     })
   .then((response) => {
@@ -59,6 +59,11 @@ for(var i = 0; i < length; i++) {
     }
     render() {
         return (
+          <div>
+          <br />
+<a href="http://localhost:3000" class="btn btn-primary btn-primary" onClick="window.location.reload();" >Realizar otra búsqueda</a>
+<br />
+<br />
 
       <div className="table-responsive">
   <table className="table">
@@ -94,6 +99,7 @@ for(var i = 0; i < length; i++) {
       )}
     </tbody>
   </table>
+  </div>
   </div>
         );
       }

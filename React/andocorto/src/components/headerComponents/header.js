@@ -12,13 +12,10 @@ class Header extends Component {
 <nav>
 <ul>
 <li className = "first">
-<a href = "#"> Home </a>
+<a href = "http://localhost:3000"> Home </a>
 </li>
-<li>
-<a href = "#"> PRO </a>
-</li>
-<li className = "last">
-<a href = "#"> DIOSES </a>
+<li className = "first">
+<a href = "https://github.com/MikePineda/tecmihacksApp2017"> Repositorio </a>
 </li>
 </ul>
 </nav>
