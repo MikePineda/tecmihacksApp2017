@@ -3,7 +3,6 @@ from flask import Flask, abort, request, jsonify
 import requests
 import json
 import time
-from pprint import pprint
 
 app = Flask(__name__)
 
@@ -55,13 +54,20 @@ def buscar():
     for s in searchs:
         for trip in s.get("trips", []):
             tripd = dict()
+            tripd["transport_type"] = trip["transport_type"]
             tripd["price"] = trip['pricing']['total']
             tripd["stops"] = trip["stops"]
             tripd["duration"] = trip["duration"]
-            tripd["destination"] = s["terminals"][trip["destination_id"]]["city_name"]
+            tripd["destination"] = trip["destination_id"]
+            if trip["transport_type"] == "flight":
+                tripd["rating"] = "no disponible"
+                tripd["transport_name"] = s["carriers"][trip["legs"]["carrier_id"]]["name"]
+            if trip["transport_type"] == "bus":
+                tripd["rating"] = s["lines"][trip["line_id"]]["average_ratings"]
+                tripd["transport_name"] = s["lines"][trip["line_id"]]["name"]
             trips[trip["id"]] = tripd
-
-    return jsonify(trips)
+    sorted_trips = sorted(trips.items(), key=lambda x: x[1]['price'])
+    return jsonify(sorted_trips[:postdata.get("limit", 50)])
 
 #if __name__ == '__main__':
 #    app.run(host='10.76.29.84', port=5000, debug=False, threaded=True)
