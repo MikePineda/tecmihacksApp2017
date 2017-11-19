@@ -12,18 +12,22 @@ class Results extends React.Component {
       this.componentDidMount = this.componentDidMount.bind(this);
     }
     componentDidMount() {
-      var length = 0;
-      length = this.props.input.pasajeros;
-      var passengersArray = passengersArray[length];
-      passengersArray.fill("adult");
+
+      var passengersArray = [];
+      var length = this.props.input.pasajeros; // user defined length
+
+for(var i = 0; i < length; i++) {
+    passengersArray.push("adult");
+}
       console.log(passengersArray);
+      console.log(this.props.input.tags);
       console.log("orpppp " +this.props.input.origen);
       axios.post('http://localhost:5000/buscar', {
     'origin': `${this.props.input.origen}`,
-    'destination': ['cancun', 'guadalajara','culiacan'],
-    'passengers': ['adult'],
-    'date': '26-11-2017',
-    'limit': 20
+    'destination': this.props.input.tags,
+    'passengers': passengersArray,
+    'date': '19-11-2017',
+    'limit': 50
     })
   .then((response) => {
     //const places = response.data.data.children.map(obj => obj.data);
@@ -55,6 +59,11 @@ class Results extends React.Component {
     }
     render() {
         return (
+          <div>
+          <br />
+<a href="http://localhost:3000" className="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
+<br />
+<br />
 
       <div className="table-responsive">
   <table className="table">
@@ -69,13 +78,6 @@ class Results extends React.Component {
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>mmm</td>
-        <td>60</td>
-        <td>Copixil</td>
-        <td>5.0</td>
-        <td>23342</td>
-      </tr>
       {this.state.places.map(place =>
         <tr key={place[0]}>
         <td key={place[1].destination}>{place[1].destination}</td>
@@ -83,13 +85,14 @@ class Results extends React.Component {
         <td key={place[1].transport_name}>{place[1].transport_name}</td>
         <td key={place[1].rating}>{place[1].rating} <span className="glyphicon glyphicon-star"></span>
         </td>
-        <td key={place[0]}>{place[1].price}</td>
+        <td key={place[0]}>{place[1].price * this.props.input.pasajeros}</td>
         <td><a href="#" className="btn btn-success"><span className="glyphicon glyphicon-usd"></span> Comprar</a></td>
 
         </tr>
       )}
     </tbody>
   </table>
+  </div>
   </div>
         );
       }

@@ -5,7 +5,6 @@ class Footer extends Component {
     return (
 <footer>
 
-My footer
 </footer>
     );
   }
