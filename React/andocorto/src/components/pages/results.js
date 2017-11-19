@@ -61,7 +61,7 @@ for(var i = 0; i < length; i++) {
         return (
           <div>
           <br />
-<a href="http://localhost:3000" class="btn btn-primary btn-primary" onClick="window.location.reload();" >Realizar otra búsqueda</a>
+<a href="http://localhost:3000" class="btn btn-primary btn-primary" >Realizar otra búsqueda</a>
 <br />
 <br />
 
