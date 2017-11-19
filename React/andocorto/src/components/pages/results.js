@@ -79,7 +79,8 @@ for(var i = 0; i < length; i++) {
         <th>Autobús/Avión</th>
         <th>Empresa</th>
         <th>Rating</th>
-        <th>Precio</th>
+        <th>Precio/Pasajero</th>
+        <th>Precio total</th>
         <th> </th>
       </tr>
     </thead>
@@ -91,7 +92,9 @@ for(var i = 0; i < length; i++) {
         <td key={place[1].transport_name}>{place[1].transport_name}</td>
         <td key={place[1].rating}>{place[1].rating} <span className="glyphicon glyphicon-star"></span>
         </td>
-        <td key={place[0]}>{place[1].price * this.props.input.pasajeros}</td>
+        <td key={place[0]}>{place[1].price}</td>
+        <td key={place[1].price}>{place[1].price * this.props.input.pasajeros}</td>
+
         <td><a href="#" className="btn btn-success"><span className="glyphicon glyphicon-usd"></span> Comprar</a></td>
 
         </tr>
