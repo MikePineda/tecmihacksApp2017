@@ -1,10 +1,94 @@
+header{
+  position: relative;
+  display: block;
+  width: 100%;
+  background: black;
+  color: white;
+  height: 90px;
+
+}
+
+header .logo {
+  position: absolute;
+  top: 50%; left: 15px;
+  -webkit-tranform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+header nav, header nav ul , header nav ul li{
+  margin: 0;
+  padding: 0;
+}
+
+header nav {
+  position: absolute;
+  top: 50% ;right: 15px;
+-webkit-tranform: translateY(-50%);
+-moz-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+
+
+
+header nav ul li{
+list-style-type: none;
+display: inline-block;
+margin-right: 10px;
+}
+
+header nav ul li .last{
+margin: 0;
+}
+
+
+header nav ul li a{
+font-size: 19px;
+line-height: normal;
+color: white;
+text-decoration: none;
+-webkit-transition: width .4s;
+-moz-transition: width .4s;
+transition: width .4s;
+transition-timing-function: ease-in-out;
+cursor: pointer;
+
+}
+
+header nav ul li a:hover{
+color: red;
+-webkit-transition: width .4s;
+-moz-transition:.4s;
+transition: width .4s;
+transition-timing-function: ease-in-out;
+}
+
+
+header nav ul li  .first{
+
+}
+
+/* HomePage
+***********************************/
+.container-fluid .row .col-md-12 .form-buscar{
+
+}
+
+
+
+
+/********************************/
 .App {
   text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/*  height: 80px;*/
+-moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
 }
 
 .App-header {
@@ -15,14 +99,9 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.0em;
 }
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
