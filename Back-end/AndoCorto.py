@@ -69,7 +69,7 @@ def buscar():
                 tripd["rating"] = s["lines"][trip["line_id"]]["average_ratings"]
                 tripd["transport_name"] = s["lines"][trip["line_id"]]["name"]
                 tripd["destination"] = s["terminals"][trip["destination_id"]]["city_name"]
-            if tripd["price"] <= postdata.get("maxprice", 5000):
+            if tripd["price"] <= int(postdata.get("maxprice", 5000)):
                 trips[trip["id"]] = tripd
 
     sorted_trips = sorted(trips.items(), key=lambda x: x[1]['price'])
