@@ -3,6 +3,7 @@ from flask import Flask, abort, request, jsonify
 import requests
 import json
 import time
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -50,16 +51,15 @@ def buscar():
         # For the meantime, consider a pending search enough as it would take quite a bit of time to await for a finished one
         searchs.append(sbus.json())
         searchs.append(splane.json())
-    trips = {}
+    trips = dict()
     for s in searchs:
-        for trip in s["trips"]:
-            tripd = {
-                "price": trip["pricing"]["total"],
-                "stops": trip["stops"],
-                "duration": trip["duration"],
-                "destination": s["terminals"][trip["destination_id"]]["city_name"]
-            }
-            trips["id"] = tripd
+        for trip in s.get("trips", []):
+            tripd = dict()
+            tripd["price"] = trip['pricing']['total']
+            tripd["stops"] = trip["stops"]
+            tripd["duration"] = trip["duration"]
+            tripd["destination"] = s["terminals"][trip["destination_id"]]["city_name"]
+            trips[trip["id"]] = tripd
 
     return jsonify(trips)
 
