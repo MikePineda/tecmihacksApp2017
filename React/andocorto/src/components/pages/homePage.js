@@ -3,32 +3,68 @@ import './homePage.css';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import Results  from './results';
 
 class HomePage extends Component {
   constructor (props) {
      super(props)
+     /*
      this.state = {
        startDate: moment(),
        origen : ""
 
      };
+     */
+     this.state = {
+
+       input: {
+               origen: "",
+               destino: "",
+               pasajeros: 0,
+               startDate: moment(),
+              showComponent: false,
+           }
+
+
+     };
      console.log(1);
-     this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.handleInputChange = this.handleInputChange.bind(this);
+
    }
 
 
 
-   handleChange(e) {
-     [e.target.name] = e.target.value;
-     console.log(e.name);
-     console.log(e.value);
-   }
 
-   handleSubmit() {
+   handleInputChange(newPartialInput) {
+     console.log(newPartialInput);
+
+          this.setState(state => ({
+              ...state,
+              input: {
+                  ...state.input,
+                  ...newPartialInput
+              }
+          }))
+
+          console.log(newPartialInput);
+      }
+
+
+
+
+   handleSubmit(newPartialInput) {
+
+     this.setState({showComponent: true });
+
+
 //    console.log("Origen: " + this.state.origen);
-    console.log(this.state.startDate);
-    console.log(this.state.Origen);
+//    console.log(this.state.startDate);
+    console.log(this.state.input.origen);
+    console.log(this.state.input.destino);
+    console.log(this.state.input.pasajeros);
+    console.log(this.state.input.startDate);
+    console.log(this.state.input.showComponent);
 
 }
 
@@ -48,26 +84,26 @@ class HomePage extends Component {
           <div className="col-md-6 form-line">
             <div className="form-group">
               <label htmlFor="exampleInputUsername">Origen</label>
-              <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.origen}   onChange={ this.handleChange.bind(this) }   />
+              <input type="text" name="origen"  className="form-control"  placeholder=" Origen " value={this.state.input.origen}   onChange={e => this.handleInputChange({origen: e.target.value})}/>
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputEmail">Destino/s</label>
-              <input type="email" className="form-control" id="exampleInputEmail" placeholder=" escribe tus destinos aquí " />
+              <input type="email" className="form-control" id="exampleInputEmail" placeholder=" escribe tus destinos aquí " value={this.state.input.destino}   onChange={e => this.handleInputChange({destino: e.target.value})} />
             </div>
 
           </div>
           <div className="col-md-6 ">
             <div className="form-group">
               <label htmlFor="telephone">Pasajeros:</label>
-              <input type="number" className="form-control" id="passengers" placeholder=" Ingresar numero de pasajeros" />
+              <input type="number" className="form-control" id="passengers" placeholder=" Ingresar numero de pasajeros" value={this.state.input.pasajeros}   onChange={e => this.handleInputChange({pasajeros: e.target.value})} />
               </div>
             <div className="form-group">
               <label htmlFor="description">Día de salida:</label>
               <DatePicker
                       name="startDate"
                       className="form-control"
-                      selected={this.state.startDate}
-                      onChange={this.handleChange.bind(this)}
+                      onChange ={e => this.handleInputChange({startDate: e.target})}
+                      selected={this.state.input.startDate}
                   />
               <br />
             </div>
@@ -81,6 +117,12 @@ class HomePage extends Component {
       </div>
     </div>
       </section>
+
+      {this.state.showComponent ?
+                 <Results input={this.state.input}/> :
+                 <p>boom</p>
+              }
+
 </div>
     );
   }

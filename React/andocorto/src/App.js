@@ -14,7 +14,7 @@ class App extends Component {
 
         <HomePage />
 
-          <Results subreddit="reactjs"/>
+          
 
         <Footer />
       </div>
